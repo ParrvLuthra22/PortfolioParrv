@@ -3,70 +3,77 @@
 import { useEffect, useRef, useState } from 'react';
 import anime from 'animejs';
 
-const projects = [
+// Featured projects (shown by default)
+const featuredProjects = [
   {
-    id: 1,
-    title: 'Nebula',
-    category: 'Brand Identity',
-    year: '2024',
-    image: '/projects/nebula.jpg',
-    gridArea: '1 / 1 / 3 / 3', // Primary large tile - spans 2 cols, 2 rows
+    name: 'upSosh',
+    date: 'December 2024',
+    github: 'https://github.com/ParrvLuthra22/upSosh',
+    demo: 'https://upsosh.vercel.app',
+    description: 'Full-stack event booking platform built in under 18 days enabling users to create, discover, and book events',
+    highlights: [
+      'Built complete authentication system and real-time event management dashboard',
+      'Integrated DodoPayments gateway for secure transactions and revenue tracking',
+      'Implemented RESTful API with PostgreSQL optimization for concurrent bookings',
+    ],
+    tech: ['Next.js', 'Express.js', 'PostgreSQL', 'DodoPayments', 'REST APIs'],
   },
   {
-    id: 2,
-    title: 'Cipher',
-    category: 'Web Application',
-    year: '2024',
-    image: '/projects/cipher.jpg',
-    gridArea: '1 / 3 / 2 / 4', // Top right
+    name: 'FoodKhoj',
+    date: 'April 2025',
+    github: 'https://github.com/ParrvLuthra22/FoodKhoj',
+    demo: 'https://foodkhoj.vercel.app',
+    description: 'Responsive frontend for food delivery and tracking with real-time visualization',
+    highlights: [
+      'Live APIs for real-time order tracking and delivery visualization',
+      'Interactive map-based UI using React and Leaflet',
+    ],
+    tech: ['React', 'Tailwind CSS', 'Leaflet', 'REST APIs'],
+  },
+];
+
+// All other projects (shown when expanded)
+const allProjects = [
+  {
+    name: 'TuneMate',
+    date: 'Nov-Dec 2024',
+    github: 'https://github.com/ParrvLuthra22/TuneMate',
+    demo: 'https://tunemate.vercel.app',
+    description: 'Music-based dating application that matches users based on Spotify listening habits and suggests concert dates',
+    highlights: [
+      'Integrated Spotify API for analyzing top artists/genres and Ticketmaster API for concert discovery',
+      'Built real-time chat with Socket.io and collaborative playlist creation',
+      'Implemented music compatibility algorithm with match highlights dashboard',
+    ],
+    tech: ['React', 'Node.js', 'Express.js', 'MongoDB', 'Socket.io', 'Spotify API', 'Ticketmaster API'],
   },
   {
-    id: 3,
-    title: 'Flux',
-    category: 'Interactive Experience',
-    year: '2023',
-    image: '/projects/flux.jpg',
-    gridArea: '1 / 4 / 3 / 5', // Right tall
-  },
-  {
-    id: 4,
-    title: 'Aether',
-    category: 'E-Commerce',
-    year: '2023',
-    image: '/projects/aether.jpg',
-    gridArea: '2 / 3 / 3 / 4', // Middle small
-  },
-  {
-    id: 5,
-    title: 'Prism',
-    category: 'Mobile App',
-    year: '2023',
-    image: '/projects/prism.jpg',
-    gridArea: '3 / 1 / 4 / 2', // Bottom left
-  },
-  {
-    id: 6,
-    title: 'Vertex',
-    category: 'Dashboard',
-    year: '2023',
-    image: '/projects/vertex.jpg',
-    gridArea: '3 / 2 / 4 / 5', // Bottom wide
+    name: 'AayrishAI',
+    date: 'May 2025',
+    github: 'https://github.com/ParrvLuthra22/AayrishAI',
+    demo: 'https://aayrishai.vercel.app',
+    description: 'Cross-platform AI assistant for automating system and web tasks',
+    highlights: [
+      'Integrated voice interface, PyQt6 GUI, and NLP models for conversational interactions',
+      'Used asynchronous programming and API integrations for real-time performance',
+    ],
+    tech: ['Python', 'PyQt6', 'NLP', 'AsyncIO', 'REST APIs'],
   },
 ];
 
 export default function Work() {
   const sectionRef = useRef<HTMLElement>(null);
-  const gridRef = useRef<HTMLDivElement>(null);
-  const tilesRef = useRef<(HTMLAnchorElement | null)[]>([]);
-  const [hoveredId, setHoveredId] = useState<number | null>(null);
-  const animatedTiles = useRef<Set<number>>(new Set());
+  const hasAnimated = useRef(false);
+  const [showAllProjects, setShowAllProjects] = useState(false);
 
   // Title animation on section visibility
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting) {
+          if (entry.isIntersecting && !hasAnimated.current) {
+            hasAnimated.current = true;
+
             anime({
               targets: '.work-title .char',
               translateY: [80, 0],
@@ -75,6 +82,17 @@ export default function Work() {
               duration: 1000,
               delay: anime.stagger(40),
             });
+
+            // Project cards stagger in
+            anime({
+              targets: '.project-card',
+              translateY: [60, 0],
+              opacity: [0, 1],
+              easing: 'easeOutExpo',
+              duration: 800,
+              delay: anime.stagger(150, { start: 400 }),
+            });
+
             observer.disconnect();
           }
         });
@@ -89,70 +107,21 @@ export default function Work() {
     return () => observer.disconnect();
   }, []);
 
-  // Individual tile clip-path reveal when entering viewport center
+  // Animate new projects when expanded
   useEffect(() => {
-    const observers: IntersectionObserver[] = [];
+    if (showAllProjects) {
+      anime({
+        targets: '.all-project-card',
+        translateY: [40, 0],
+        opacity: [0, 1],
+        easing: 'easeOutExpo',
+        duration: 600,
+        delay: anime.stagger(100),
+      });
+    }
+  }, [showAllProjects]);
 
-    tilesRef.current.forEach((tile, index) => {
-      if (!tile) return;
-
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting && !animatedTiles.current.has(index)) {
-              animatedTiles.current.add(index);
-              
-              anime({
-                targets: tile,
-                clipPath: ['inset(100% 0 0 0)', 'inset(0% 0 0 0)'],
-                easing: 'easeOutExpo',
-                duration: 1200,
-                delay: 100,
-              });
-
-              observer.disconnect();
-            }
-          });
-        },
-        { 
-          threshold: 0.5, // Trigger when tile is at viewport center
-          rootMargin: '-20% 0px -20% 0px' // Narrow the trigger zone
-        }
-      );
-
-      observer.observe(tile);
-      observers.push(observer);
-    });
-
-    return () => observers.forEach(obs => obs.disconnect());
-  }, []);
-
-  // Hover effect: scale hovered tile only (removed neighbor compression)
-  const handleMouseEnter = (id: number, index: number) => {
-    setHoveredId(id);
-
-    // Scale up hovered tile
-    anime({
-      targets: tilesRef.current[index],
-      scale: 1.02,
-      easing: 'easeOutExpo',
-      duration: 400,
-    });
-  };
-
-  const handleMouseLeave = (index: number) => {
-    setHoveredId(null);
-
-    // Reset hovered tile
-    anime({
-      targets: tilesRef.current[index],
-      scale: 1,
-      easing: 'easeOutExpo',
-      duration: 400,
-    });
-  };
-
-  const titleText = "SELECTED WORK";
+  const titleText = "WORK";
 
   return (
     <section 
@@ -163,7 +132,7 @@ export default function Work() {
         {/* Header */}
         <div className="flex flex-col md:flex-row md:items-end md:justify-between mb-16">
           <div>
-            <span className="text-caption text-white/30 block mb-4 tracking-widest">Portfolio</span>
+            <span className="text-caption text-white/30 block mb-4 tracking-widest">Projects</span>
             <h2 className="work-title text-headline overflow-hidden text-white">
               {titleText.split('').map((char, i) => (
                 <span key={i} className="char inline-block opacity-0">
@@ -174,100 +143,152 @@ export default function Work() {
           </div>
           
           <p className="text-body text-white/50 mt-6 md:mt-0 md:max-w-md">
-            A curated selection of projects spanning brand identity, web development, and interactive experiences.
+            A curated selection of projects spanning full-stack development, AI, and interactive experiences.
           </p>
         </div>
 
-        {/* Bento Grid */}
-        <div 
-          ref={gridRef}
-          className="grid gap-3 md:gap-4"
-          style={{
-            gridTemplateColumns: 'repeat(4, 1fr)',
-            gridTemplateRows: 'repeat(3, minmax(200px, 280px))',
-          }}
-        >
-          {projects.map((project, index) => (
-            <a 
-              key={project.id}
-              ref={el => { tilesRef.current[index] = el; }}
-              href={`/work/${project.id}`}
-              className="work-tile block relative overflow-hidden group"
-              style={{ 
-                gridArea: project.gridArea,
-                clipPath: 'inset(100% 0 0 0)',
-                willChange: 'transform, clip-path',
-              }}
-              data-cursor="link"
-              onMouseEnter={() => handleMouseEnter(project.id, index)}
-              onMouseLeave={() => handleMouseLeave(index)}
+        {/* Featured Projects Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+          {featuredProjects.map((project, index) => (
+            <div 
+              key={index} 
+              className="project-card opacity-0 p-8 border border-white/10 hover:border-mustard/30 transition-colors duration-500 group"
             >
-              {/* Full-bleed image placeholder */}
-              <div 
-                className="absolute inset-0 bg-white/5 transition-transform duration-700 group-hover:scale-110"
-                style={{
-                  backgroundImage: `url(${project.image})`,
-                  backgroundSize: 'cover',
-                  backgroundPosition: 'center',
-                }}
-              />
-
-              {/* Overlay */}
-              <div className="absolute inset-0 bg-black/40 group-hover:bg-black/60 transition-all duration-500" />
-
-              {/* Content */}
-              <div className="absolute inset-0 p-6 md:p-8 flex flex-col justify-end">
-                {/* Mustard accent line - animates in on hover */}
-                <div 
-                  className={`h-px bg-mustard mb-4 transition-all duration-500 ease-out ${
-                    hoveredId === project.id ? 'w-16 opacity-100' : 'w-0 opacity-0'
-                  }`}
-                />
-
-                {/* Category + Year */}
-                <div className="flex items-center gap-3 mb-2">
-                  <span className="text-mono text-xs text-mustard tracking-wider">{project.category}</span>
-                  <span className="text-mono text-xs text-white/40">{project.year}</span>
+              <div className="flex items-start justify-between mb-6">
+                <div>
+                  <span className="text-mono text-mustard text-xs tracking-wider mb-2 block">Featured</span>
+                  <h3 className="text-title text-white group-hover:text-mustard transition-colors duration-300">
+                    {project.name}
+                  </h3>
+                  <span className="text-mono text-white/30 text-xs">{project.date}</span>
                 </div>
-
-                {/* Title - slides upward on hover */}
-                <h3 
-                  className={`text-title text-white transition-transform duration-500 ease-out ${
-                    hoveredId === project.id ? '-translate-y-2' : 'translate-y-0'
-                  }`}
-                >
-                  {project.title}
-                </h3>
-
-                {/* Arrow indicator */}
-                <div 
-                  className={`absolute top-6 right-6 transition-all duration-500 ${
-                    hoveredId === project.id ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-4'
-                  }`}
-                >
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                    <path d="M7 17L17 7M17 7H7M17 7V17" stroke="currentColor" strokeWidth="1" className="text-mustard" />
-                  </svg>
+                <div className="flex gap-4">
+                  <a
+                    href={project.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-mono text-xs text-white/30 hover:text-mustard transition-colors duration-300"
+                    data-cursor="link"
+                  >
+                    GitHub
+                  </a>
+                  <a
+                    href={project.demo}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-mono text-xs text-white/30 hover:text-mustard transition-colors duration-300"
+                    data-cursor="link"
+                  >
+                    Demo
+                  </a>
                 </div>
               </div>
 
-              {/* Border */}
-              <div className="absolute inset-0 border border-white/10 pointer-events-none" />
-            </a>
+              <p className="text-body text-white/50 mb-6">{project.description}</p>
+
+              <ul className="space-y-2 mb-6">
+                {project.highlights.map((highlight, i) => (
+                  <li key={i} className="text-body text-white/40 flex items-start gap-3 text-sm">
+                    <span className="text-mustard mt-1">→</span>
+                    {highlight}
+                  </li>
+                ))}
+              </ul>
+
+              <div className="flex flex-wrap gap-2">
+                {project.tech.map((t, i) => (
+                  <span 
+                    key={i}
+                    className="text-mono text-xs px-3 py-1 border border-white/10 text-white/40"
+                  >
+                    {t}
+                  </span>
+                ))}
+              </div>
+            </div>
           ))}
         </div>
 
-        {/* View All Button */}
-        <div className="flex justify-center mt-16">
-          <button 
-            className="magnetic-btn group relative overflow-hidden border border-white/20 px-8 py-4 text-white transition-colors duration-300 hover:border-mustard"
-            data-magnetic
+        {/* View All Projects Toggle */}
+        <button
+          onClick={() => setShowAllProjects(!showAllProjects)}
+          className="w-full py-4 border border-white/10 hover:border-mustard/30 text-mono text-xs text-white/40 hover:text-mustard transition-all duration-300 flex items-center justify-center gap-2 group"
+          data-cursor="link"
+        >
+          <span>{showAllProjects ? 'Show Less' : 'View All Projects'}</span>
+          <svg 
+            width="12" 
+            height="12" 
+            viewBox="0 0 24 24" 
+            fill="none"
+            className={`transition-transform duration-300 ${showAllProjects ? 'rotate-180' : ''}`}
           >
-            <span className="relative z-10 text-mono tracking-wider group-hover:text-mustard transition-colors duration-300">
-              View All Projects
-            </span>
-          </button>
-        </div>
+            <path d="M6 9L12 15L18 9" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
+        </button>
+
+        {/* All Projects (Expandable) */}
+        {showAllProjects && (
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
+            {allProjects.map((project, index) => (
+              <div 
+                key={index} 
+                className="all-project-card opacity-0 p-6 border border-white/5 hover:border-white/10 transition-colors duration-500 group"
+              >
+                <div className="flex items-start justify-between mb-4">
+                  <div>
+                    <h3 className="text-subtitle text-white group-hover:text-mustard transition-colors duration-300">
+                      {project.name}
+                    </h3>
+                    <span className="text-mono text-white/30 text-xs">{project.date}</span>
+                  </div>
+                  <div className="flex gap-3">
+                    <a
+                      href={project.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-mono text-xs text-white/30 hover:text-mustard transition-colors duration-300"
+                      data-cursor="link"
+                    >
+                      GitHub
+                    </a>
+                    <a
+                      href={project.demo}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-mono text-xs text-white/30 hover:text-mustard transition-colors duration-300"
+                      data-cursor="link"
+                    >
+                      Demo
+                    </a>
+                  </div>
+                </div>
+
+                <p className="text-body text-white/40 mb-4 text-sm">{project.description}</p>
+
+                <ul className="space-y-1 mb-4">
+                  {project.highlights.map((highlight, i) => (
+                    <li key={i} className="text-body text-white/30 flex items-start gap-3 text-xs">
+                      <span className="text-white/20 mt-1">•</span>
+                      {highlight}
+                    </li>
+                  ))}
+                </ul>
+
+                <div className="flex flex-wrap gap-2">
+                  {project.tech.map((t, i) => (
+                    <span 
+                      key={i}
+                      className="text-mono text-xs px-2 py-0.5 bg-white/5 text-white/30"
+                    >
+                      {t}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
       </div>
     </section>
   );

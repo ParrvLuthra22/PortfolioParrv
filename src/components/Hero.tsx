@@ -1,45 +1,15 @@
 'use client';
 
-import { useEffect, useRef, useCallback } from 'react';
+import { useEffect, useRef } from 'react';
 import anime from 'animejs';
 import Spline from '@splinetool/react-spline';
-import type { Application } from '@splinetool/runtime';
 
 export default function Hero() {
   const sectionRef = useRef<HTMLElement>(null);
   const titleRef = useRef<HTMLHeadingElement>(null);
-  const splineRef = useRef<Application | null>(null);
   const splineContainerRef = useRef<HTMLDivElement>(null);
   const textContainerRef = useRef<HTMLDivElement>(null);
   const rafRef = useRef<number | null>(null);
-  const mouseRef = useRef({ x: 0, y: 0 });
-
-  // Spline load handler
-  const onSplineLoad = useCallback((spline: Application) => {
-    splineRef.current = spline;
-  }, []);
-
-  // Cursor-based Spline rotation
-  useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      mouseRef.current = {
-        x: (e.clientX / window.innerWidth - 0.5) * 2,
-        y: (e.clientY / window.innerHeight - 0.5) * 2,
-      };
-
-      // Rotate Spline object based on cursor
-      if (splineRef.current) {
-        const obj = splineRef.current.findObjectByName('Scene');
-        if (obj) {
-          obj.rotation.y = mouseRef.current.x * 0.3;
-          obj.rotation.x = mouseRef.current.y * 0.2;
-        }
-      }
-    };
-
-    window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
-  }, []);
 
   // Entrance animations with anime.js
   useEffect(() => {
@@ -152,12 +122,11 @@ export default function Hero() {
       {/* Spline Scene - Right side, floating */}
       <div 
         ref={splineContainerRef}
-        className="hero-spline absolute top-1/2 right-[-5%] -translate-y-1/2 w-[60vw] h-[60vw] max-w-[800px] max-h-[800px] opacity-0"
+        className="hero-spline absolute top-1/2 right-[-5%] -translate-y-1/2 w-[60vw] h-[60vw] max-w-200 max-h-200 opacity-0"
         style={{ willChange: 'transform' }}
       >
         <Spline
-          scene="https://prod.spline.design/6Wq1Q7YGyM-iab9i/scene.splinecode"
-          onLoad={onSplineLoad}
+          scene="https://prod.spline.design/yGtY-du0EwyTr4sU/scene.splinecode"
           className="w-full h-full"
         />
       </div>
@@ -199,7 +168,7 @@ export default function Hero() {
         <div className="flex gap-16 mt-12 text-mono">
           <div className="hero-tagline opacity-0">
             <span className="block text-white text-sm mb-1">Location</span>
-            <span className="text-white/50">San Francisco, CA</span>
+            <span className="text-white/50">New Delhi, India</span>
           </div>
           <div className="hero-tagline opacity-0">
             <span className="block text-white text-sm mb-1">Status</span>

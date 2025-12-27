@@ -138,8 +138,8 @@ export default function Navigation() {
           <div className="absolute bottom-8 left-0 right-0 section-padding">
             <div className="flex justify-between items-end">
               <div className="text-mono text-white/50">
-                <span className="block">hello@parrv.dev</span>
-                <span>San Francisco, CA</span>
+                <span className="block">pactorluthra@gmail.com</span>
+                <span>New Delhi, India</span>
               </div>
               <div className="flex gap-4 text-mono text-white/50">
                 <a href="#" className="hover:text-mustard transition-colors">TW</a>

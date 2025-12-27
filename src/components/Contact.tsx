@@ -156,12 +156,11 @@ export default function Contact() {
     };
   }, []);
 
-  const email = "hello@parrv.dev";
+  const email = "pactorluthra@gmail.com";
   const socials = [
-    { name: 'X', url: 'https://twitter.com' },
-    { name: 'GitHub', url: 'https://github.com' },
-    { name: 'LinkedIn', url: 'https://linkedin.com' },
-    { name: 'Read.cv', url: 'https://read.cv' },
+    { name: 'X', url: 'https://x.com/LuthraParrv' },
+    { name: 'GitHub', url: 'https://github.com/ParrvLuthra22' },
+    { name: 'LinkedIn', url: 'https://www.linkedin.com/in/parrv-luthra-73372b322/' },
   ];
 
   return (
@@ -194,7 +193,7 @@ export default function Contact() {
               onMouseLeave={() => setIsHovering(false)}
               style={{ willChange: 'transform' }}
             >
-              <span className="block text-[clamp(2rem,10vw,8rem)] font-medium leading-[0.9] tracking-tight">
+              <span className="block text-[clamp(1.5rem,6vw,5rem)] font-medium leading-[0.9] tracking-tight">
                 {email.split('').map((char, i) => (
                   <span 
                     key={i} 
@@ -228,7 +227,7 @@ export default function Contact() {
 
           {/* Supporting text */}
           <p className="text-body text-white/40 max-w-md mb-20 contact-text opacity-0">
-            Currently accepting new projects for Q1 2025. 
+            Currently accepting new projects for Q1 2026. 
             Let&apos;s create something extraordinary together.
           </p>
 
@@ -240,7 +239,7 @@ export default function Contact() {
                 <div className="w-2 h-2 bg-mustard animate-pulse-subtle" />
                 <span className="text-mono text-xs text-white tracking-wider uppercase">Available for work</span>
               </div>
-              <span className="text-mono text-xs text-white/30">Based in San Francisco, CA</span>
+              <span className="text-mono text-xs text-white/30">Based in New Delhi, India</span>
             </div>
 
             {/* Social links - clustered subtly */}
