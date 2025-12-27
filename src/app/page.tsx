@@ -3,7 +3,6 @@ import About from "@/components/About";
 import Work from "@/components/Work";
 import Process from "@/components/Process";
 import Contact from "@/components/Contact";
-import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
@@ -28,13 +27,10 @@ export default function Home() {
         <Process />
       </section>
 
-      {/* Contact Section - The Invitation */}
+      {/* Contact Section - The Invitation + Footer */}
       <section id="contact">
         <Contact />
       </section>
-
-      {/* Footer */}
-      <Footer />
     </main>
   );
 }
