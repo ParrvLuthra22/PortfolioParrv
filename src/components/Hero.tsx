@@ -2,7 +2,6 @@
 
 import { useEffect, useRef } from 'react';
 import anime from 'animejs';
-import Spline from '@splinetool/react-spline';
 
 export default function Hero() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -125,9 +124,13 @@ export default function Hero() {
         className="hero-spline absolute top-1/2 right-[-5%] -translate-y-1/2 w-[60vw] h-[60vw] max-w-200 max-h-200 opacity-0"
         style={{ willChange: 'transform' }}
       >
-        <Spline
-          scene="https://prod.spline.design/yGtY-du0EwyTr4sU/scene.splinecode"
-          className="w-full h-full"
+        <iframe
+          src="https://my.spline.design/genkubgreetingrobot-kPONopCwc39zRFJymnMrDG4S/"
+          frameBorder="0"
+          width="100%"
+          height="100%"
+          title="3D Robot"
+          style={{ border: 'none', background: 'transparent' }}
         />
       </div>
 
