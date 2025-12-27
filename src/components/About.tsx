@@ -69,17 +69,15 @@ export default function About() {
             const cards = document.querySelectorAll('.manifesto-card');
             cards.forEach((card, index) => {
               // Alternate: even cards from left, odd cards from right
-              const fromX = index % 2 === 0 ? -150 : 150;
-              const fromY = index % 2 === 0 ? 50 : -50;
+              const fromX = index % 2 === 0 ? -60 : 60;
 
               anime({
                 targets: card,
                 translateX: [fromX, 0],
-                translateY: [fromY, 0],
                 opacity: [0, 1],
                 easing: 'spring(1, 80, 10, 0)', // spring-like easing
-                duration: 1200,
-                delay: 300 + index * 200,
+                duration: 1000,
+                delay: 300 + index * 150,
               });
             });
 

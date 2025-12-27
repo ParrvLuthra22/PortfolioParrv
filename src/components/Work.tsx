@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef, useState, useCallback } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import anime from 'animejs';
 
 const projects = [
@@ -58,23 +58,8 @@ export default function Work() {
   const sectionRef = useRef<HTMLElement>(null);
   const gridRef = useRef<HTMLDivElement>(null);
   const tilesRef = useRef<(HTMLAnchorElement | null)[]>([]);
-  const cursorRef = useRef<HTMLDivElement>(null);
   const [hoveredId, setHoveredId] = useState<number | null>(null);
-  const [cursorVisible, setCursorVisible] = useState(false);
   const animatedTiles = useRef<Set<number>>(new Set());
-
-  // Custom cursor position tracking
-  const updateCursor = useCallback((e: MouseEvent) => {
-    if (cursorRef.current) {
-      cursorRef.current.style.left = `${e.clientX}px`;
-      cursorRef.current.style.top = `${e.clientY}px`;
-    }
-  }, []);
-
-  useEffect(() => {
-    window.addEventListener('mousemove', updateCursor);
-    return () => window.removeEventListener('mousemove', updateCursor);
-  }, [updateCursor]);
 
   // Title animation on section visibility
   useEffect(() => {
@@ -142,46 +127,28 @@ export default function Work() {
     return () => observers.forEach(obs => obs.disconnect());
   }, []);
 
-  // Hover effect: scale hovered tile, compress neighbors
+  // Hover effect: scale hovered tile only (removed neighbor compression)
   const handleMouseEnter = (id: number, index: number) => {
     setHoveredId(id);
-    setCursorVisible(true);
 
     // Scale up hovered tile
     anime({
       targets: tilesRef.current[index],
-      scale: 1.03,
+      scale: 1.02,
       easing: 'easeOutExpo',
       duration: 400,
     });
-
-    // Compress neighboring tiles
-    tilesRef.current.forEach((tile, i) => {
-      if (i !== index && tile) {
-        anime({
-          targets: tile,
-          scale: 0.97,
-          easing: 'easeOutExpo',
-          duration: 400,
-        });
-      }
-    });
   };
 
-  const handleMouseLeave = () => {
+  const handleMouseLeave = (index: number) => {
     setHoveredId(null);
-    setCursorVisible(false);
 
-    // Reset all tiles
-    tilesRef.current.forEach((tile) => {
-      if (tile) {
-        anime({
-          targets: tile,
-          scale: 1,
-          easing: 'easeOutExpo',
-          duration: 400,
-        });
-      }
+    // Reset hovered tile
+    anime({
+      targets: tilesRef.current[index],
+      scale: 1,
+      easing: 'easeOutExpo',
+      duration: 400,
     });
   };
 
@@ -192,24 +159,6 @@ export default function Work() {
       ref={sectionRef}
       className="section-padding bg-black relative"
     >
-      {/* Custom 'View' cursor */}
-      <div
-        ref={cursorRef}
-        className={`fixed pointer-events-none z-50 flex items-center justify-center transition-all duration-300 ${
-          cursorVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-50'
-        }`}
-        style={{
-          width: '80px',
-          height: '80px',
-          transform: 'translate(-50%, -50%)',
-          mixBlendMode: 'difference',
-        }}
-      >
-        <div className="w-full h-full rounded-full bg-mustard flex items-center justify-center">
-          <span className="text-black text-xs font-medium tracking-wider uppercase">View</span>
-        </div>
-      </div>
-
       <div className="container-wide">
         {/* Header */}
         <div className="flex flex-col md:flex-row md:items-end md:justify-between mb-16">
@@ -249,8 +198,9 @@ export default function Work() {
                 clipPath: 'inset(100% 0 0 0)',
                 willChange: 'transform, clip-path',
               }}
+              data-cursor="link"
               onMouseEnter={() => handleMouseEnter(project.id, index)}
-              onMouseLeave={handleMouseLeave}
+              onMouseLeave={() => handleMouseLeave(index)}
             >
               {/* Full-bleed image placeholder */}
               <div 

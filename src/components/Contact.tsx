@@ -10,10 +10,17 @@ export default function Contact() {
   const [isHovering, setIsHovering] = useState(false);
   const [soundEnabled, setSoundEnabled] = useState(false);
   const hasAnimated = useRef(false);
+  const lastSoundTime = useRef(0);
 
-  // Sound effect for interactions (optional)
+  // Sound effect for interactions with debounce
   const playHoverSound = useCallback(() => {
     if (!soundEnabled) return;
+    
+    // 200ms debounce to prevent rapid-fire sounds
+    const now = Date.now();
+    if (now - lastSoundTime.current < 200) return;
+    lastSoundTime.current = now;
+    
     try {
       const audioContext = new (window.AudioContext || (window as Window & { webkitAudioContext?: typeof AudioContext }).webkitAudioContext)();
       const oscillator = audioContext.createOscillator();
@@ -24,11 +31,11 @@ export default function Contact() {
       
       oscillator.frequency.value = 440;
       oscillator.type = 'sine';
-      gainNode.gain.setValueAtTime(0.1, audioContext.currentTime);
-      gainNode.gain.exponentialRampToValueAtTime(0.001, audioContext.currentTime + 0.1);
+      gainNode.gain.setValueAtTime(0.08, audioContext.currentTime);
+      gainNode.gain.exponentialRampToValueAtTime(0.001, audioContext.currentTime + 0.08);
       
       oscillator.start(audioContext.currentTime);
-      oscillator.stop(audioContext.currentTime + 0.1);
+      oscillator.stop(audioContext.currentTime + 0.08);
     } catch {
       // Audio not supported
     }
@@ -105,14 +112,14 @@ export default function Contact() {
       const distY = e.clientY - centerY;
       const distance = Math.sqrt(distX * distX + distY * distY);
       
-      // Magnetic pull radius
-      const magnetRadius = 300;
+      // Magnetic pull radius - refined to be less aggressive
+      const magnetRadius = 150;
       
       if (distance < magnetRadius) {
         // Calculate pull strength (stronger when closer)
         const pull = 1 - (distance / magnetRadius);
-        const moveX = distX * pull * 0.15;
-        const moveY = distY * pull * 0.15;
+        const moveX = distX * pull * 0.08;
+        const moveY = distY * pull * 0.08;
 
         cancelAnimationFrame(rafId);
         rafId = requestAnimationFrame(() => {
@@ -230,10 +237,7 @@ export default function Contact() {
             {/* Availability indicator */}
             <div className="contact-text opacity-0">
               <div className="flex items-center gap-3 mb-3">
-                <div className="relative">
-                  <div className="w-2 h-2 bg-mustard" />
-                  <div className="absolute inset-0 w-2 h-2 bg-mustard animate-ping opacity-75" />
-                </div>
+                <div className="w-2 h-2 bg-mustard animate-pulse-subtle" />
                 <span className="text-mono text-xs text-white tracking-wider uppercase">Available for work</span>
               </div>
               <span className="text-mono text-xs text-white/30">Based in San Francisco, CA</span>

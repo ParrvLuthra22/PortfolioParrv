@@ -49,23 +49,13 @@ export default function Hero() {
         const chars = titleRef.current.querySelectorAll('.char');
         anime({
           targets: chars,
-          translateY: [120, 0],
+          translateY: [100, 0],
           opacity: [0, 1],
           easing: 'easeOutExpo',
-          duration: 1400,
-          delay: anime.stagger(60, { start: 200 }),
+          duration: 1200,
+          delay: anime.stagger(35, { start: 150 }),
         });
       }
-
-      // Subtitle animation
-      anime({
-        targets: '.hero-subtitle',
-        translateY: [60, 0],
-        opacity: [0, 1],
-        easing: 'easeOutExpo',
-        duration: 1200,
-        delay: 600,
-      });
 
       // Tagline animation
       anime({
@@ -74,7 +64,7 @@ export default function Hero() {
         opacity: [0, 1],
         easing: 'easeOutExpo',
         duration: 1000,
-        delay: 900,
+        delay: 600,
       });
 
       // Spline fades in slower
@@ -178,9 +168,9 @@ export default function Hero() {
         className="absolute bottom-0 left-0 section-padding pb-24 z-10"
         style={{ willChange: 'transform, opacity' }}
       >
-        {/* Eyebrow */}
-        <p className="hero-subtitle text-caption text-white/50 mb-6 opacity-0">
-          Creative Developer & Designer
+        {/* Tagline with mustard accent - only ONE highlighted word */}
+        <p className="hero-tagline text-subtitle text-white/50 mb-6 max-w-xl opacity-0">
+          Crafting <span className="text-mustard">extraordinary</span> digital experiences
         </p>
 
         {/* Main Title - Massive, clipped by viewport */}
@@ -205,13 +195,8 @@ export default function Hero() {
           </span>
         </h1>
 
-        {/* Tagline with mustard accent - only ONE highlighted word */}
-        <p className="hero-tagline text-subtitle text-white/50 mt-8 max-w-xl opacity-0">
-          Crafting <span className="text-mustard">extraordinary</span> digital experiences
-        </p>
-
         {/* Meta info */}
-        <div className="flex gap-16 mt-16 text-mono">
+        <div className="flex gap-16 mt-12 text-mono">
           <div className="hero-tagline opacity-0">
             <span className="block text-white text-sm mb-1">Location</span>
             <span className="text-white/50">San Francisco, CA</span>

@@ -68,7 +68,7 @@ export default function Process() {
   const iconsRef = useRef<(HTMLDivElement | null)[]>([]);
   const hasAnimated = useRef(false);
 
-  // Continuous icon rotation
+  // Continuous icon rotation - slow and subtle
   useEffect(() => {
     iconsRef.current.forEach((icon, index) => {
       if (icon) {
@@ -76,7 +76,7 @@ export default function Process() {
           targets: icon,
           rotateY: [0, 360],
           easing: 'linear',
-          duration: 8000 + index * 1000, // Slightly different speeds
+          duration: 25000 + index * 3000, // Much slower: 25-34s per rotation
           loop: true,
         });
       }

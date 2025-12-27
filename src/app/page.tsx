@@ -1,6 +1,7 @@
 import Hero from "@/components/Hero";
 import About from "@/components/About";
 import Work from "@/components/Work";
+import Experience from "@/components/Experience";
 import Process from "@/components/Process";
 import Contact from "@/components/Contact";
 
@@ -20,6 +21,11 @@ export default function Home() {
       {/* Work Section - The Evidence */}
       <section id="work">
         <Work />
+      </section>
+
+      {/* Experience Section - Education & Projects */}
+      <section id="experience">
+        <Experience />
       </section>
 
       {/* Process Section - The Method */}

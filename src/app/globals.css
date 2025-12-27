@@ -155,6 +155,16 @@ body {
   clip-path: inset(0 0 0 0);
 }
 
+/* Subtle opacity pulse for availability indicator */
+@keyframes pulse-subtle {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
+
+.animate-pulse-subtle {
+  animation: pulse-subtle 2s ease-in-out infinite;
+}
+
 .cursor-dot {
   position: fixed;
   top: 0;

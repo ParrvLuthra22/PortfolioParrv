@@ -49,6 +49,7 @@ export default function Navigation() {
   const menuItems = [
     { label: 'Work', href: '#work' },
     { label: 'About', href: '#about' },
+    { label: 'Experience', href: '#experience' },
     { label: 'Process', href: '#process' },
     { label: 'Contact', href: '#contact' },
   ];

@@ -18,10 +18,10 @@ export default function CustomCursor() {
       target.current = { x: e.clientX, y: e.clientY };
     };
 
-    // Smooth cursor follow with anime.js
+    // Smooth cursor follow with tighter lerp for responsiveness
     const animateCursor = () => {
-      pos.current.x += (target.current.x - pos.current.x) * 0.15;
-      pos.current.y += (target.current.y - pos.current.y) * 0.15;
+      pos.current.x += (target.current.x - pos.current.x) * 0.2;
+      pos.current.y += (target.current.y - pos.current.y) * 0.2;
       
       cursor.style.transform = `translate(${pos.current.x - cursor.offsetWidth / 2}px, ${pos.current.y - cursor.offsetHeight / 2}px)`;
       
