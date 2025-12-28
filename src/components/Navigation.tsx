@@ -50,65 +50,63 @@ export default function Navigation() {
     { label: 'Work', href: '#work' },
     { label: 'About', href: '#about' },
     { label: 'Experience', href: '#experience' },
-    { label: 'Process', href: '#process' },
     { label: 'Contact', href: '#contact' },
   ];
 
+
   return (
     <>
-      <nav 
+      <nav
         ref={navRef}
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-          scrolled ? 'py-4' : 'py-6'
-        }`}
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled ? 'py-4' : 'py-6'}`}
       >
         <div className="section-padding py-0">
           <div className="flex items-center justify-between">
-            <Link 
-              href="/" 
-              className="text-body font-medium tracking-tight relative group text-white"
+            {/* Logo - always top left, mono font, same size as nav */}
+            <a
+              href="#hero"
+              className="text-mono font-medium text-base tracking-tight relative group text-white mr-8"
+              style={{ letterSpacing: '0.04em' }}
               data-cursor="link"
             >
               <span className="relative z-10">PARRV</span>
               <span className="absolute bottom-0 left-0 w-full h-px bg-mustard scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
-            </Link>
+            </a>
 
+            {/* Nav links - all mono, same size, same alignment */}
             <div className="hidden md:flex items-center gap-8">
               {menuItems.map((item, index) => (
                 <a
                   key={index}
                   href={item.href}
-                  className="link-underline text-body text-white/50 hover:text-white transition-colors duration-300"
+                  className="text-mono font-medium text-base tracking-tight text-white/70 hover:text-mustard transition-colors duration-300 px-1 py-0.5 relative flex items-center"
+                  style={{ letterSpacing: '0.04em' }}
                   data-cursor="link"
                 >
-                  {item.label}
+                  <span className="relative z-10">{item.label}</span>
+                  <span className="absolute bottom-0 left-0 w-full h-0.5 bg-mustard scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
                 </a>
               ))}
             </div>
 
+            {/* Hamburger for mobile */}
             <button
               onClick={() => setIsOpen(!isOpen)}
               className="md:hidden relative w-8 h-8 flex flex-col justify-center items-center gap-1.5"
               aria-label="Toggle menu"
             >
-              <span 
-                className={`w-6 h-px bg-white transition-all duration-300 ${
-                  isOpen ? 'rotate-45 translate-y-1' : ''
-                }`} 
+              <span
+                className={`w-6 h-px bg-white transition-all duration-300 ${isOpen ? 'rotate-45 translate-y-1' : ''}`}
               />
-              <span 
-                className={`w-6 h-px bg-white transition-all duration-300 ${
-                  isOpen ? '-rotate-45 -translate-y-1' : ''
-                }`} 
+              <span
+                className={`w-6 h-px bg-white transition-all duration-300 ${isOpen ? '-rotate-45 -translate-y-1' : ''}`}
               />
             </button>
           </div>
         </div>
 
-        <div 
-          className={`absolute inset-0 -z-10 transition-opacity duration-500 ${
-            scrolled ? 'opacity-100' : 'opacity-0'
-          }`}
+        <div
+          className={`absolute inset-0 -z-10 transition-opacity duration-500 ${scrolled ? 'opacity-100' : 'opacity-0'}`}
           style={{
             background: 'linear-gradient(to bottom, rgba(0,0,0,0.9) 0%, transparent 100%)',
           }}

@@ -6,7 +6,6 @@ import anime from 'animejs';
 export default function Hero() {
   const sectionRef = useRef<HTMLElement>(null);
   const titleRef = useRef<HTMLHeadingElement>(null);
-  const splineContainerRef = useRef<HTMLDivElement>(null);
   const textContainerRef = useRef<HTMLDivElement>(null);
   const rafRef = useRef<number | null>(null);
 
@@ -36,15 +35,6 @@ export default function Hero() {
         delay: 600,
       });
 
-      // Spline fades in slower
-      anime({
-        targets: '.hero-spline',
-        opacity: [0, 1],
-        easing: 'easeOutExpo',
-        duration: 2000,
-        delay: 400,
-      });
-
       // Scroll indicator
       anime({
         targets: '.scroll-indicator',
@@ -62,9 +52,8 @@ export default function Hero() {
   // Scroll behavior with requestAnimationFrame
   useEffect(() => {
     const section = sectionRef.current;
-    const splineContainer = splineContainerRef.current;
     const textContainer = textContainerRef.current;
-    if (!section || !splineContainer || !textContainer) return;
+    if (!section || !textContainer) return;
 
     let ticking = false;
 
@@ -79,12 +68,6 @@ export default function Hero() {
       const textOpacity = 1 - progress * 0.5;
       textContainer.style.transform = `translateY(${textTranslateY}px)`;
       textContainer.style.opacity = String(textOpacity);
-
-      // Spline scales down and moves toward top-right corner
-      const splineScale = 1 - progress * 0.4;
-      const splineTranslateX = progress * 100;
-      const splineTranslateY = progress * -150;
-      splineContainer.style.transform = `translate(${splineTranslateX}px, ${splineTranslateY}px) scale(${splineScale})`;
 
       ticking = false;
     };
@@ -116,22 +99,6 @@ export default function Hero() {
         <span></span>
         <span></span>
         <span></span>
-      </div>
-
-      {/* Spline Scene - Right side, floating */}
-      <div 
-        ref={splineContainerRef}
-        className="hero-spline absolute top-1/2 right-[-5%] -translate-y-1/2 w-[60vw] h-[60vw] max-w-200 max-h-200 opacity-0"
-        style={{ willChange: 'transform' }}
-      >
-        <iframe
-          src="https://my.spline.design/genkubgreetingrobot-kPONopCwc39zRFJymnMrDG4S/"
-          frameBorder="0"
-          width="100%"
-          height="100%"
-          title="3D Robot"
-          style={{ border: 'none', background: 'transparent' }}
-        />
       </div>
 
       {/* Text Content - Left side, anchored bottom */}

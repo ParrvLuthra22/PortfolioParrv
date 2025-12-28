@@ -95,71 +95,22 @@ export default function About() {
     return () => observer.disconnect();
   }, []);
 
-  // Horizontal scroll tied to vertical scroll + background color transition
-  useEffect(() => {
-    const section = sectionRef.current;
-    const cards = cardsRef.current;
-    const bg = bgRef.current;
-    if (!section || !cards || !bg) return;
-
-    let rafId: number;
-    let ticking = false;
-
-    const updateScroll = () => {
-      const rect = section.getBoundingClientRect();
-      const sectionTop = rect.top;
-      const sectionHeight = section.offsetHeight;
-      const windowHeight = window.innerHeight;
-      
-      // Calculate scroll progress within this section
-      const scrollProgress = Math.max(0, Math.min(1, 
-        (windowHeight - sectionTop) / (sectionHeight + windowHeight)
-      ));
-
-      // Horizontal scroll
-      const maxScroll = cards.scrollWidth - cards.clientWidth;
-      cards.scrollLeft = scrollProgress * maxScroll;
-
-      // Background transition: black (#000) to dark charcoal (#111)
-      // Interpolate RGB values
-      const r = Math.round(0 + scrollProgress * 17);
-      const g = Math.round(0 + scrollProgress * 17);
-      const b = Math.round(0 + scrollProgress * 17);
-      bg.style.backgroundColor = `rgb(${r}, ${g}, ${b})`;
-
-      ticking = false;
-    };
-
-    const onScroll = () => {
-      if (!ticking) {
-        rafId = requestAnimationFrame(updateScroll);
-        ticking = true;
-      }
-    };
-
-    window.addEventListener('scroll', onScroll, { passive: true });
-    
-    return () => {
-      window.removeEventListener('scroll', onScroll);
-      cancelAnimationFrame(rafId);
-    };
-  }, []);
+  // Remove horizontal scroll logic. Only keep background color as black.
 
   const titleText = "PHILOSOPHY";
 
   return (
     <section 
       ref={sectionRef}
-      className="relative min-h-[200vh]"
+      className="relative min-h-screen bg-black"
     >
-      {/* Background with color transition */}
+      {/* Background (static black) */}
       <div 
         ref={bgRef}
         className="absolute inset-0 bg-black"
-        style={{ willChange: 'background-color' }}
       />
 
-      <div className="sticky top-0 h-screen flex flex-col justify-center overflow-hidden section-padding relative z-10">
+      <div className="flex flex-col justify-center section-padding relative z-10">
         {/* Section header */}
         <div className="mb-16">
           <span className="text-caption text-white/30 block mb-4 tracking-widest">About</span>
@@ -172,16 +123,15 @@ export default function About() {
           </h2>
         </div>
 
-        {/* Horizontal scroll container */}
+        {/* Cards container: vertical on mobile, row/grid on desktop, no horizontal scroll */}
         <div 
           ref={cardsRef}
-          className="flex gap-8 overflow-x-auto no-scrollbar pb-4"
-          style={{ scrollBehavior: 'auto' }}
+          className="grid gap-8 pb-4 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3"
         >
           {manifesto.map((item, index) => (
             <div 
               key={index}
-              className="manifesto-card flex-shrink-0 w-[400px] md:w-[500px] p-8 md:p-10 bg-black border border-white/10 opacity-0 group"
+              className="manifesto-card w-full p-8 md:p-10 bg-black border border-white/10 opacity-0 group"
               style={{ willChange: 'transform, opacity' }}
             >
               {/* Card number + line */}
@@ -189,17 +139,14 @@ export default function About() {
                 <span className="text-mono text-mustard">{item.number}</span>
                 <div className="h-px flex-1 bg-white/10 group-hover:bg-mustard transition-colors duration-500" />
               </div>
-              
               {/* Bold headline */}
               <h3 className="text-title font-medium mb-6 text-white group-hover:text-mustard transition-colors duration-300">
                 {item.title}
               </h3>
-              
               {/* Body text with max-width */}
               <p className="text-body text-white/50" style={{ maxWidth: '45ch' }}>
                 {item.description}
               </p>
-
               {/* Abstract SVG line decoration */}
               <div className="mt-10 opacity-50 group-hover:opacity-100 transition-opacity duration-500">
                 {svgDecorations[index]}
@@ -208,13 +155,7 @@ export default function About() {
           ))}
         </div>
 
-        {/* Scroll hint */}
-        <div className="absolute bottom-8 right-8 flex items-center gap-3 text-mono text-white/30">
-          <span className="tracking-wider">Scroll to explore</span>
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-            <path d="M5 12H19M19 12L13 6M19 12L13 18" stroke="currentColor" strokeWidth="1" />
-          </svg>
-        </div>
+        {/* No scroll hint needed since all content is visible */}
       </div>
     </section>
   );

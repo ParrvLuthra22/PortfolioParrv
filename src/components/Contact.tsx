@@ -250,7 +250,7 @@ export default function Contact() {
                   href={social.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="social-link text-mono text-xs text-white/30 hover:text-mustard transition-colors duration-300 opacity-0 tracking-wider uppercase"
+                  className="social-link text-mono text-xs text-mustard transition-colors duration-300 opacity-0 tracking-wider uppercase"
                   onMouseEnter={playHoverSound}
                 >
                   {social.name}

@@ -3,8 +3,9 @@
 import { useEffect, useRef, useState } from 'react';
 import anime from 'animejs';
 
-// Featured projects (shown by default)
-const featuredProjects = [
+
+// All main projects (show all 4 on main screen)
+const projects = [
   {
     name: 'upSosh',
     date: 'December 2024',
@@ -30,15 +31,11 @@ const featuredProjects = [
     ],
     tech: ['React', 'Tailwind CSS', 'Leaflet', 'REST APIs'],
   },
-];
-
-// All other projects (shown when expanded)
-const allProjects = [
   {
     name: 'TuneMate',
     date: 'Nov-Dec 2024',
     github: 'https://github.com/ParrvLuthra22/TuneMate',
-    demo: 'https://tunemate.vercel.app',
+    demo: 'https://music-match-seven.vercel.app/',
     description: 'Music-based dating application that matches users based on Spotify listening habits and suggests concert dates',
     highlights: [
       'Integrated Spotify API for analyzing top artists/genres and Ticketmaster API for concert discovery',
@@ -147,16 +144,15 @@ export default function Work() {
           </p>
         </div>
 
-        {/* Featured Projects Grid */}
+        {/* Projects Grid - show all 4 */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-          {featuredProjects.map((project, index) => (
+          {projects.map((project, index) => (
             <div 
               key={index} 
               className="project-card opacity-0 p-8 border border-white/10 hover:border-mustard/30 transition-colors duration-500 group"
             >
               <div className="flex items-start justify-between mb-6">
                 <div>
-                  <span className="text-mono text-mustard text-xs tracking-wider mb-2 block">Featured</span>
                   <h3 className="text-title text-white group-hover:text-mustard transition-colors duration-300">
                     {project.name}
                   </h3>
@@ -208,87 +204,6 @@ export default function Work() {
             </div>
           ))}
         </div>
-
-        {/* View All Projects Toggle */}
-        <button
-          onClick={() => setShowAllProjects(!showAllProjects)}
-          className="w-full py-4 border border-white/10 hover:border-mustard/30 text-mono text-xs text-white/40 hover:text-mustard transition-all duration-300 flex items-center justify-center gap-2 group"
-          data-cursor="link"
-        >
-          <span>{showAllProjects ? 'Show Less' : 'View All Projects'}</span>
-          <svg 
-            width="12" 
-            height="12" 
-            viewBox="0 0 24 24" 
-            fill="none"
-            className={`transition-transform duration-300 ${showAllProjects ? 'rotate-180' : ''}`}
-          >
-            <path d="M6 9L12 15L18 9" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-          </svg>
-        </button>
-
-        {/* All Projects (Expandable) */}
-        {showAllProjects && (
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
-            {allProjects.map((project, index) => (
-              <div 
-                key={index} 
-                className="all-project-card opacity-0 p-6 border border-white/5 hover:border-white/10 transition-colors duration-500 group"
-              >
-                <div className="flex items-start justify-between mb-4">
-                  <div>
-                    <h3 className="text-subtitle text-white group-hover:text-mustard transition-colors duration-300">
-                      {project.name}
-                    </h3>
-                    <span className="text-mono text-white/30 text-xs">{project.date}</span>
-                  </div>
-                  <div className="flex gap-3">
-                    <a
-                      href={project.github}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-mono text-xs text-white/30 hover:text-mustard transition-colors duration-300"
-                      data-cursor="link"
-                    >
-                      GitHub
-                    </a>
-                    <a
-                      href={project.demo}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-mono text-xs text-white/30 hover:text-mustard transition-colors duration-300"
-                      data-cursor="link"
-                    >
-                      Demo
-                    </a>
-                  </div>
-                </div>
-
-                <p className="text-body text-white/40 mb-4 text-sm">{project.description}</p>
-
-                <ul className="space-y-1 mb-4">
-                  {project.highlights.map((highlight, i) => (
-                    <li key={i} className="text-body text-white/30 flex items-start gap-3 text-xs">
-                      <span className="text-white/20 mt-1">•</span>
-                      {highlight}
-                    </li>
-                  ))}
-                </ul>
-
-                <div className="flex flex-wrap gap-2">
-                  {project.tech.map((t, i) => (
-                    <span 
-                      key={i}
-                      className="text-mono text-xs px-2 py-0.5 bg-white/5 text-white/30"
-                    >
-                      {t}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            ))}
-          </div>
-        )}
       </div>
     </section>
   );
