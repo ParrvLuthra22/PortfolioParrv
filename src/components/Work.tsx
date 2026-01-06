@@ -35,7 +35,7 @@ const projects = [
     name: 'TuneMate',
     date: 'Nov-Dec 2024',
     github: 'https://github.com/ParrvLuthra22/TuneMate',
-    demo: 'https://music-match-seven.vercel.app/',
+    demo: 'https://music-match-bay.vercel.app',
     description: 'Music-based dating application that matches users based on Spotify listening habits and suggests concert dates',
     highlights: [
       'Integrated Spotify API for analyzing top artists/genres and Ticketmaster API for concert discovery',
