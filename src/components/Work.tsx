@@ -48,7 +48,7 @@ const projects = [
     name: 'AayrishAI',
     date: 'May 2025',
     github: 'https://github.com/ParrvLuthra22/AayrishAI',
-    demo: 'https://aayrishai.vercel.app',
+    demo: 'https://drive.google.com/file/d/1C74ye46t0seS3kq8oCgCTmahsE79RGgb/view?usp=sharing',
     description: 'Cross-platform AI assistant for automating system and web tasks',
     highlights: [
       'Integrated voice interface, PyQt6 GUI, and NLP models for conversational interactions',
