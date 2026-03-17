@@ -10,8 +10,8 @@ const projects = [
     name: 'upSosh',
     date: 'December 2024',
     github: 'https://github.com/ParrvLuthra22/upSosh',
-    demo: 'https://upsosh.vercel.app',
-    description: 'Full-stack event booking platform built in under 18 days enabling users to create, discover, and book events',
+    demo: 'https://upsosh.app',
+    description: 'Full-stack event booking platform built enabling users to create, discover, and book events',
     highlights: [
       'Built complete authentication system and real-time event management dashboard',
       'Integrated DodoPayments gateway for secure transactions and revenue tracking',
