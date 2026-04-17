@@ -366,7 +366,7 @@ export default function Work() {
         {/* ── Tab bar ───────────────────────────────────────────────────── */}
         <div className="relative mb-10 border-b border-white/8 flex items-center gap-8 flex-wrap">
           {([
-            { id: 'tab-grid',      label: 'All Projects', tab: 'grid'      as Tab },
+            { id: 'tab-grid',      label: 'All Projects', tab: 'grid'      as Tab, dot: undefined },
             { id: 'tab-simulator', label: 'Live Flow',    tab: 'simulator'  as Tab, dot: '#77DD77' },
             { id: 'tab-neural',    label: 'AI / ML',      tab: 'neural'     as Tab, dot: '#D4A030' },
             { id: 'tab-frontend',  label: 'Frontend',     tab: 'frontend'   as Tab, dot: '#A855F7' },
