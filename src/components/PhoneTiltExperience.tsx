@@ -51,7 +51,7 @@ const APP_PROJECTS: AppProject[] = [
     gradient: ['#1a0a2e', '#2d1060', '#4a0080'],
     accentColor: '#A855F7',
     uiElements: ['Match Card', 'Music Player', 'Chat', 'Discovery'],
-    github: 'https://github.com/ParrvLuthra22/TuneMate',
+    github: 'https://github.com/ParrvLuthra22/musicMatch',
     demo: 'https://music-match-bay.vercel.app',
     tech: ['React Native', 'Socket.io', 'Spotify API', 'MongoDB'],
     highlights: [

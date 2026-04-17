@@ -76,7 +76,7 @@ export const CHART_DATASETS: ChartDataset[] = [
     project: {
       name: 'TuneMate Growth',
       date: 'Nov–Dec 2024',
-      github: 'https://github.com/ParrvLuthra22/TuneMate',
+      github: 'https://github.com/ParrvLuthra22/musicMatch',
       demo: 'https://music-match-bay.vercel.app',
       description: 'User growth analytics dashboard tracking music-based match app adoption over a 6-month period.',
       tech: ['React', 'Socket.io', 'MongoDB', 'Recharts'],

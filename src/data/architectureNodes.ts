@@ -135,7 +135,7 @@ export const NODES: NodeDef[] = [
         'Integrated Spotify API and Ticketmaster API',
       ],
       tech: ['Node.js', 'Express.js', 'Socket.io', 'Spotify API'],
-      github: 'https://github.com/ParrvLuthra22/TuneMate',
+      github: 'https://github.com/ParrvLuthra22/musicMatch',
       demo: 'https://music-match-bay.vercel.app',
     },
   },

@@ -37,7 +37,7 @@ const frontendProjects = [
   {
     name: 'TuneMate UI',
     date: 'Nov–Dec 2024',
-    github: 'https://github.com/ParrvLuthra22/TuneMate',
+    github: 'https://github.com/ParrvLuthra22/musicMatch',
     demo: 'https://music-match-bay.vercel.app',
     description: 'Music-based dating app frontend with animated match cards and real-time chat UI.',
     tech: ['React', 'Socket.io', 'Framer Motion', 'Spotify API'],

@@ -46,7 +46,7 @@ const allProjects = [
   {
     name: 'TuneMate',
     date: 'Nov–Dec 2024',
-    github: 'https://github.com/ParrvLuthra22/TuneMate',
+    github: 'https://github.com/ParrvLuthra22/musicMatch',
     demo: 'https://music-match-bay.vercel.app',
     description: 'Music-based dating app that matches users via Spotify habits and suggests concert dates.',
     highlights: [
@@ -92,7 +92,7 @@ const aiProjects = [
     outputIdx: 1,
     name: 'TuneMate Recommender',
     date: 'Nov–Dec 2024',
-    github: 'https://github.com/ParrvLuthra22/TuneMate',
+    github: 'https://github.com/ParrvLuthra22/musicMatch',
     demo: 'https://music-match-bay.vercel.app',
     description: 'Music compatibility algorithm that scores users based on overlapping artist/genre graphs.',
     highlights: [
