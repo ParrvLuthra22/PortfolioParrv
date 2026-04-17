@@ -136,13 +136,13 @@ export default function Navigation() {
           <div className="absolute bottom-8 left-0 right-0 section-padding">
             <div className="flex justify-between items-end">
               <div className="text-mono text-white/50">
-                <span className="block">pactorluthra@gmail.com</span>
+                <span className="block">parrvcodes@gmail.com</span>
                 <span>New Delhi, India</span>
               </div>
               <div className="flex gap-4 text-mono text-white/50">
-                <a href="#" className="hover:text-mustard transition-colors">TW</a>
-                <a href="#" className="hover:text-mustard transition-colors">GH</a>
-                <a href="#" className="hover:text-mustard transition-colors">LI</a>
+                <a href="https://x.com/LuthraParrv" className="hover:text-mustard transition-colors">TW</a>
+                <a href="https://github.com/ParrvLuthra22" className="hover:text-mustard transition-colors">GH</a>
+                <a href="https://www.linkedin.com/in/parrv-luthra-73372b322/" className="hover:text-mustard transition-colors">LI</a>
               </div>
             </div>
           </div>

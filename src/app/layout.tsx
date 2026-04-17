@@ -5,6 +5,7 @@ import "./globals.css";
 import SmoothScroll from "@/components/SmoothScroll";
 import CustomCursor from "@/components/CustomCursor";
 import Navigation from "@/components/Navigation";
+import { CursorProvider } from "@/context/CursorContext";
 
 const inter = Inter({
   variable: "--font-sans",
@@ -39,11 +40,13 @@ export default function RootLayout({
     <html lang="en" className="lenis lenis-smooth">
       <body className={`${inter.variable} ${jetbrainsMono.variable} antialiased bg-black text-white`}>
         <SmoothScroll>
-          <Navigation />
-          <CustomCursor />
-          {/* Noise overlay for texture */}
-          <div className="noise-overlay" />
-          {children}
+          <CursorProvider>
+            <Navigation />
+            <CustomCursor />
+            {/* Noise overlay for texture */}
+            <div className="noise-overlay" />
+            {children}
+          </CursorProvider>
         </SmoothScroll>
       </body>
     </html>

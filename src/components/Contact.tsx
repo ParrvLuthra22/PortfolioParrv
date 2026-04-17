@@ -156,7 +156,7 @@ export default function Contact() {
     };
   }, []);
 
-  const email = "pactorluthra@gmail.com";
+  const email = "parrvcodes@gmail.com";
   const socials = [
     { name: 'X', url: 'https://x.com/LuthraParrv' },
     { name: 'GitHub', url: 'https://github.com/ParrvLuthra22' },
