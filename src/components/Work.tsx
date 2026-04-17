@@ -9,10 +9,11 @@ import { useCursor } from '@/context/CursorContext';
 import type { NeuralNetworkCanvasHandle } from './NeuralNetworkCanvas';
 
 // Lazy-load heavy components (no SSR)
-const FlowSimulator      = dynamic(() => import('./FlowSimulator'),       { ssr: false });
-const NeuralNetworkCanvas = dynamic(() => import('./NeuralNetworkCanvas'), { ssr: false });
-const PixelArtBuilder    = dynamic(() => import('./PixelArtBuilder'),     { ssr: false });
-const ChartMorphGallery  = dynamic(() => import('./ChartMorphGallery'),   { ssr: false });
+const FlowSimulator       = dynamic(() => import('./FlowSimulator'),        { ssr: false });
+const NeuralNetworkCanvas  = dynamic(() => import('./NeuralNetworkCanvas'),  { ssr: false });
+const PixelArtBuilder     = dynamic(() => import('./PixelArtBuilder'),      { ssr: false });
+const ChartMorphGallery   = dynamic(() => import('./ChartMorphGallery'),    { ssr: false });
+const PhoneTiltExperience = dynamic(() => import('./PhoneTiltExperience'),  { ssr: false });
 
 // ─── Data ──────────────────────────────────────────────────────────────────────
 
@@ -121,7 +122,7 @@ const aiProjects = [
   },
 ];
 
-type Tab = 'grid' | 'simulator' | 'neural' | 'frontend' | 'dataviz';
+type Tab = 'grid' | 'simulator' | 'neural' | 'frontend' | 'dataviz' | 'mobile';
 
 // ─── Component ────────────────────────────────────────────────────────────────
 
@@ -182,6 +183,7 @@ export default function Work() {
       neural:    'tab-neural',
       frontend:  'tab-frontend',
       dataviz:   'tab-dataviz',
+      mobile:    'tab-mobile',
     };
     const target = document.getElementById(idMap[activeTab]);
     if (!target || !tabLineRef.current) return;
@@ -223,6 +225,8 @@ export default function Work() {
       anime({ targets: '.frontend-wrapper', opacity: [0, 1], translateY: [20, 0], easing: 'easeOutExpo', duration: 500 });
     } else if (activeTab === 'dataviz') {
       anime({ targets: '.dataviz-wrapper', opacity: [0, 1], translateY: [20, 0], easing: 'easeOutExpo', duration: 500 });
+    } else if (activeTab === 'mobile') {
+      anime({ targets: '.mobile-wrapper', opacity: [0, 1], translateY: [20, 0], easing: 'easeOutExpo', duration: 500 });
     }
   }, [activeTab]);
 
@@ -367,6 +371,7 @@ export default function Work() {
             { id: 'tab-neural',    label: 'AI / ML',      tab: 'neural'     as Tab, dot: '#D4A030' },
             { id: 'tab-frontend',  label: 'Frontend',     tab: 'frontend'   as Tab, dot: '#A855F7' },
             { id: 'tab-dataviz',   label: 'Data Viz',     tab: 'dataviz'    as Tab, dot: '#88CCEE' },
+            { id: 'tab-mobile',    label: 'Mobile',       tab: 'mobile'     as Tab, dot: '#FF8FA3' },
           ] as const).map(({ id, label, tab, dot }) => (
             <button
               key={tab}
@@ -795,6 +800,45 @@ export default function Work() {
               </div>
             </div>
             <ChartMorphGallery />
+          </div>
+        )}
+        {/* ── Tab: Mobile Phone Tilt ──────────────────────────────────── */}
+        {activeTab === 'mobile' && (
+          <div className="mobile-wrapper opacity-0">
+            <div className="flex flex-col md:flex-row md:items-start justify-between mb-8 gap-4">
+              <div>
+                <span style={{
+                  fontFamily: "'JetBrains Mono', monospace",
+                  fontSize: 9, letterSpacing: 2, color: 'rgba(255,255,255,0.25)',
+                  textTransform: 'uppercase', display: 'block', marginBottom: 6,
+                }}>
+                  3D Phone Showcase
+                </span>
+                <p style={{
+                  color: 'rgba(255,255,255,0.45)', fontSize: 13, lineHeight: 1.6,
+                  maxWidth: 480, fontFamily: 'Inter, system-ui, sans-serif',
+                }}>
+                  Move your cursor over the stage to tilt the phone. Click a project pill to swipe between apps.
+                </p>
+              </div>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 6, flexShrink: 0 }}>
+                {([
+                  { label: 'TuneMate · iOS + Android',  color: '#A855F7' },
+                  { label: 'FoodKhoj · Android',        color: '#4ADE80' },
+                  { label: 'AayrishAI · iOS + Android', color: '#D4A030' },
+                ] as const).map((t, i) => (
+                  <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+                    <div style={{ width: 5, height: 5, borderRadius: '50%', background: t.color, boxShadow: `0 0 5px ${t.color}` }} />
+                    <span style={{
+                      fontFamily: "'JetBrains Mono', monospace",
+                      fontSize: 8, letterSpacing: 1,
+                      color: 'rgba(255,255,255,0.25)', textTransform: 'uppercase',
+                    }}>{t.label}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <PhoneTiltExperience />
           </div>
         )}
       </div>
