@@ -17,31 +17,35 @@ const PhoneTiltExperience = dynamic(() => import('./PhoneTiltExperience'),  { ss
 
 // ─── Data ──────────────────────────────────────────────────────────────────────
 
-const allProjects = [
+// ─── FullStack projects ──────────────────────────────────────────────────────
+const fullstackProjects = [
   {
     name: 'upSosh',
-    date: 'December 2024',
-    github: 'https://github.com/ParrvLuthra22/upSosh',
-    demo: 'https://upsosh.app',
-    description: 'Full-stack event booking platform enabling users to create, discover, and book events.',
+    date: 'Dec 2025',
+    github: '',
+    demo: '',
+    description: 'Micro-event booking platform with payment integration and real-time dashboards.',
     highlights: [
-      'Complete authentication system and real-time event management dashboard',
-      'DodoPayments gateway for secure transactions and revenue tracking',
-      'RESTful API with PostgreSQL optimization for concurrent bookings',
+      'Concurrent booking handling with optimised relational data via Prisma ORM',
+      'DodoPayments integration with secure checkout flow',
+      'Deployed on Vercel + Railway across multiple production iterations',
     ],
-    tech: ['Next.js', 'Express.js', 'PostgreSQL', 'DodoPayments', 'REST APIs'],
+    tech: ['TypeScript', 'Node.js', 'PostgreSQL', 'Prisma ORM', 'DodoPayments'],
+    accentColor: '#60A5FA',
   },
   {
-    name: 'FoodKhoj',
-    date: 'April 2025',
-    github: 'https://github.com/ParrvLuthra22/FoodKhoj',
-    demo: 'https://food-khoj.vercel.app',
-    description: 'Responsive frontend for food delivery and tracking with real-time visualization.',
+    name: 'CreatorLyff',
+    date: 'Jan 2026',
+    github: '',
+    demo: '',
+    description: 'Full-stack creator marketplace — brands discover and collaborate with creators.',
     highlights: [
-      'Live APIs for real-time order tracking and delivery visualization',
-      'Interactive map-based UI using React and Leaflet',
+      'Role-based workflows with proposal management and status tracking',
+      'Real-time in-app chat via Socket.io',
+      'Secure auth: JWT + Facebook OAuth',
     ],
-    tech: ['React', 'Tailwind CSS', 'Leaflet', 'REST APIs'],
+    tech: ['TypeScript', 'Node.js', 'MongoDB', 'Socket.io', 'JWT', 'React'],
+    accentColor: '#34D399',
   },
   {
     name: 'TuneMate',
@@ -54,71 +58,103 @@ const allProjects = [
       'Real-time chat with Socket.io and collaborative playlist creation',
       'Music compatibility algorithm with match highlights dashboard',
     ],
-    tech: ['React', 'Node.js', 'Express.js', 'MongoDB', 'Socket.io', 'Spotify API'],
+    tech: ['React', 'Node.js', 'MongoDB', 'Socket.io', 'Spotify API'],
+    accentColor: '#A855F7',
   },
   {
-    name: 'AayrishAI',
-    date: 'May 2025',
-    github: 'https://github.com/ParrvLuthra22/AayrishAI',
-    demo: 'https://drive.google.com/file/d/1C74ye46t0seS3kq8oCgCTmahsE79RGgb/view?usp=sharing',
-    description: 'Cross-platform AI assistant for automating system and web tasks.',
+    name: 'FoodKhoj',
+    date: 'Apr 2025',
+    github: 'https://github.com/ParrvLuthra22/FoodKhoj',
+    demo: 'https://food-khoj.vercel.app',
+    description: 'Responsive frontend for food delivery and real-time map-based order tracking.',
     highlights: [
-      'Voice interface, PyQt6 GUI, and NLP models for conversational interactions',
-      'Async programming and API integrations for real-time performance',
+      'Live APIs for real-time order tracking and delivery visualization',
+      'Interactive map-based UI using React and Leaflet',
     ],
-    tech: ['Python', 'PyQt6', 'NLP', 'AsyncIO', 'REST APIs'],
+    tech: ['React', 'Tailwind CSS', 'Leaflet', 'REST APIs'],
+    accentColor: '#4ADE80',
   },
 ];
 
-// AI/ML projects mapped to neural network output nodes (3 output nodes)
+// ─── AI/ML projects mapped to neural network output nodes ────────────────────
 const aiProjects = [
   {
     outputIdx: 0,
-    name: 'AayrishAI',
-    date: 'May 2025',
-    github: 'https://github.com/ParrvLuthra22/AayrishAI',
-    demo: 'https://drive.google.com/file/d/1C74ye46t0seS3kq8oCgCTmahsE79RGgb/view?usp=sharing',
-    description: 'Cross-platform AI assistant for automating system and web tasks using NLP.',
+    name: 'Friday',
+    date: 'Jan 2026',
+    github: '',
+    demo: '',
+    description: 'Modular macOS AI assistant with multi-agent pub/sub architecture and fully offline voice stack.',
     highlights: [
-      'Voice interface and PyQt6 GUI with NLP-driven intent recognition',
-      'Async task execution pipeline with real-time feedback',
-      'Multi-modal input: voice, text, and scripted macros',
+      'Multi-agent pub/sub with LangGraph conditional edges and tool routing',
+      'Full macOS automation: iMessage, Safari, Finder, Calendar via AppleScript',
+      'RAG memory with ChromaDB + semantic retrieval',
+      'Real-time HUD overlay + face authentication + FastAPI health endpoint',
     ],
-    tech: ['Python', 'PyQt6', 'NLP', 'AsyncIO', 'REST APIs'],
-    nodeLabel: 'NLP Model',
-    accentColor: '#D4A030',
+    tech: ['Python', 'LangGraph', 'Gemini API', 'Vosk', 'Whisper', 'ChromaDB'],
+    nodeLabel: 'Orchestrator',
+    accentColor: '#FFB800',
   },
   {
     outputIdx: 1,
-    name: 'TuneMate Recommender',
-    date: 'Nov–Dec 2024',
-    github: 'https://github.com/ParrvLuthra22/musicMatch',
-    demo: 'https://music-match-bay.vercel.app',
-    description: 'Music compatibility algorithm that scores users based on overlapping artist/genre graphs.',
+    name: 'MMAS',
+    date: 'Apr 2025',
+    github: '',
+    demo: '',
+    description: 'Multi-Model Agent System — 4-agent research pipeline completing in under 12s.',
     highlights: [
-      'Graph-based music taste analysis with weighted edge scoring',
-      'Spotify API data normalized into feature vectors',
-      'Real-time match score updates via Socket.io',
+      'Search → Reader → Writer → Critic pipeline with LangChain',
+      'Tavily API + BeautifulSoup for real-time web search and structured extraction',
+      'Full pipeline completes in under 12 seconds',
     ],
-    tech: ['Node.js', 'Spotify API', 'Socket.io', 'Graph Algorithms'],
-    nodeLabel: 'Recommender',
-    accentColor: '#88CCEE',
+    tech: ['Python', 'LangChain', 'Groq', 'Llama 3.1', 'Tavily', 'Streamlit'],
+    nodeLabel: 'Planner',
+    accentColor: '#A78BFA',
+  },
+  {
+    outputIdx: 0,
+    name: 'PlayerChurnPrediction',
+    date: '2025',
+    github: '',
+    demo: '',
+    description: 'ML model predicting player churn in gaming platforms using behavioral data.',
+    highlights: [
+      'Feature engineering from player session and engagement logs',
+      'Gradient boosting model with SHAP explainability',
+    ],
+    tech: ['Python', 'Scikit-learn', 'XGBoost', 'SHAP', 'Pandas'],
+    nodeLabel: 'Predictor',
+    accentColor: '#F59E0B',
+  },
+  {
+    outputIdx: 1,
+    name: 'AIDelegate',
+    date: '2025',
+    github: '',
+    demo: '',
+    description: 'Autonomous task delegation system that routes tasks to specialised sub-agents.',
+    highlights: [
+      'Dynamic task routing with confidence-scored agent selection',
+      'Tool-use pipeline with structured output parsing',
+    ],
+    tech: ['Python', 'LangChain', 'OpenAI', 'FastAPI'],
+    nodeLabel: 'Router',
+    accentColor: '#34D399',
   },
   {
     outputIdx: 2,
-    name: 'FoodKhoj Vision',
-    date: 'April 2025',
-    github: 'https://github.com/ParrvLuthra22/FoodKhoj',
-    demo: 'https://food-khoj.vercel.app',
-    description: 'Geospatial delivery optimization using live map data and route prediction heuristics.',
+    name: 'GitHub Reviewer',
+    date: '2025',
+    github: '',
+    demo: '',
+    description: 'AI-powered GitHub PR reviewer that gives inline code critique and suggestions.',
     highlights: [
-      'Route optimization with real-time Leaflet + OpenStreetMap data',
-      'Predictive ETA using delivery frequency heuristics',
-      'Live cluster visualization of delivery hotspots',
+      'Automated PR diff parsing and context-aware review generation',
+      'GitHub Actions integration for CI-triggered reviews',
     ],
-    tech: ['React', 'Leaflet', 'REST APIs', 'Geospatial Algorithms'],
-    nodeLabel: 'GeospatialAI',
-    accentColor: '#77DD77',
+    tech: ['Python', 'Gemini API', 'GitHub API', 'FastAPI'],
+    nodeLabel: 'Critic',
+    accentColor: '#60A5FA',
   },
 ];
 
@@ -366,12 +402,12 @@ export default function Work() {
         {/* ── Tab bar ───────────────────────────────────────────────────── */}
         <div className="relative mb-10 border-b border-white/8 flex items-center gap-8 flex-wrap">
           {([
-            { id: 'tab-grid',      label: 'All Projects', tab: 'grid'      as Tab, dot: undefined },
-            { id: 'tab-simulator', label: 'Live Flow',    tab: 'simulator'  as Tab, dot: '#77DD77' },
-            { id: 'tab-neural',    label: 'AI / ML',      tab: 'neural'     as Tab, dot: '#D4A030' },
-            { id: 'tab-frontend',  label: 'Frontend',     tab: 'frontend'   as Tab, dot: '#A855F7' },
-            { id: 'tab-dataviz',   label: 'Data Viz',     tab: 'dataviz'    as Tab, dot: '#88CCEE' },
-            { id: 'tab-mobile',    label: 'Mobile',       tab: 'mobile'     as Tab, dot: '#FF8FA3' },
+            { id: 'tab-grid',      label: 'FullStack',   tab: 'grid'      as Tab, dot: undefined },
+            { id: 'tab-simulator', label: 'Live Flow',   tab: 'simulator'  as Tab, dot: '#77DD77' },
+            { id: 'tab-neural',    label: 'AI / ML',     tab: 'neural'     as Tab, dot: '#FFB800' },
+            { id: 'tab-frontend',  label: 'Frontend',    tab: 'frontend'   as Tab, dot: '#A855F7' },
+            { id: 'tab-dataviz',   label: 'Data Viz',    tab: 'dataviz'    as Tab, dot: '#88CCEE' },
+            { id: 'tab-mobile',    label: 'Mobile',      tab: 'mobile'     as Tab, dot: '#FF8FA3' },
           ] as const).map(({ id, label, tab, dot }) => (
             <button
               key={tab}
@@ -413,41 +449,48 @@ export default function Work() {
           />
         </div>
 
-        {/* ── Tab: All Projects Grid ─────────────────────────────────────── */}
+        {/* ── Tab: FullStack Projects ──────────────────────────────────── */}
         {activeTab === 'grid' && (
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {allProjects.map((project, index) => (
+            {fullstackProjects.map((project, index) => (
               <div
                 key={index}
-                className="project-card opacity-0 p-8 border border-white/10 hover:border-mustard/30 transition-colors duration-500 group"
+                className="project-card opacity-0 p-8 border border-white/10 group"
+                style={{ borderColor: 'rgba(255,255,255,0.08)', transition: 'border-color 0.4s' }}
+                onMouseEnter={e => { (e.currentTarget as HTMLDivElement).style.borderColor = project.accentColor + '44'; }}
+                onMouseLeave={e => { (e.currentTarget as HTMLDivElement).style.borderColor = 'rgba(255,255,255,0.08)'; }}
               >
-                <div className="flex items-start justify-between mb-6">
+                <div className="flex items-start justify-between mb-5">
                   <div>
-                    <h3 className="text-title text-white group-hover:text-mustard transition-colors duration-300">
+                    <h3 style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 18, fontWeight: 600, color: '#fff', letterSpacing: '-0.02em', marginBottom: 4 }}>
                       {project.name}
                     </h3>
-                    <span className="text-mono text-white/30 text-xs">{project.date}</span>
+                    <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 10, color: project.accentColor, letterSpacing: 1 }}>{project.date}</span>
                   </div>
                   <div className="flex gap-4">
-                    <a href={project.github} target="_blank" rel="noopener noreferrer"
-                      className="text-mono text-xs text-white/30 hover:text-mustard transition-colors duration-300"
-                      data-cursor="link">GitHub</a>
-                    <a href={project.demo} target="_blank" rel="noopener noreferrer"
-                      className="text-mono text-xs text-white/30 hover:text-mustard transition-colors duration-300"
-                      data-cursor="link">Demo</a>
+                    {project.github && (
+                      <a href={project.github} target="_blank" rel="noopener noreferrer"
+                        style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 9, letterSpacing: 1, color: 'rgba(255,255,255,0.3)', textDecoration: 'none', textTransform: 'uppercase' }}
+                        data-cursor="link">GitHub ↗</a>
+                    )}
+                    {project.demo && (
+                      <a href={project.demo} target="_blank" rel="noopener noreferrer"
+                        style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 9, letterSpacing: 1, color: project.accentColor, textDecoration: 'none', textTransform: 'uppercase' }}
+                        data-cursor="link">Demo ↗</a>
+                    )}
                   </div>
                 </div>
-                <p className="text-body text-white/50 mb-6">{project.description}</p>
-                <ul className="space-y-2 mb-6">
+                <p style={{ fontSize: 13, color: 'rgba(255,255,255,0.5)', lineHeight: 1.65, fontFamily: 'Inter, system-ui, sans-serif', marginBottom: 16 }}>{project.description}</p>
+                <ul style={{ listStyle: 'none', padding: 0, margin: '0 0 16px' }}>
                   {project.highlights.map((h, i) => (
-                    <li key={i} className="text-body text-white/40 flex items-start gap-3 text-sm">
-                      <span className="text-mustard mt-1">→</span>{h}
+                    <li key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: 10, color: 'rgba(255,255,255,0.4)', fontSize: 12, lineHeight: 1.65, fontFamily: 'Inter, system-ui, sans-serif', marginBottom: 6 }}>
+                      <span style={{ color: project.accentColor, flexShrink: 0, marginTop: 3 }}>→</span>{h}
                     </li>
                   ))}
                 </ul>
-                <div className="flex flex-wrap gap-2">
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: 5 }}>
                   {project.tech.map((t, i) => (
-                    <span key={i} className="text-mono text-xs px-3 py-1 border border-white/10 text-white/40">{t}</span>
+                    <span key={i} style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 9, letterSpacing: 1, padding: '2px 8px', border: `1px solid ${project.accentColor}33`, color: 'rgba(255,255,255,0.35)', textTransform: 'uppercase' }}>{t}</span>
                   ))}
                 </div>
               </div>
