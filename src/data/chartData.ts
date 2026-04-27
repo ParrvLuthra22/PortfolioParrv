@@ -94,10 +94,10 @@ export const CHART_DATASETS: ChartDataset[] = [
     accentColor: 'rgba(255,255,255,0.15)',
     gradient: ['#0d0d0d', '#111111'],
     points: [
-      { label: 'TBD', value: 0, raw: '—' },
-      { label: 'TBD', value: 0, raw: '—' },
-      { label: 'TBD', value: 0, raw: '—' },
-      { label: 'TBD', value: 0, raw: '—' },
+      { label: 'Dashboard', value: 30, raw: '—' },
+      { label: 'Analysis', value: 40, raw: '—' },
+      { label: 'Data Cleaning', value: 10, raw: '—' },
+      { label: 'Storytelling', value: 20, raw: '—' },
     ],
     project: {
       name: 'Netflix Analysis',
