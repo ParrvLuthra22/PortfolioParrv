@@ -77,7 +77,7 @@ export const CHART_DATASETS: ChartDataset[] = [
       name: 'FraudGuard',
       date: '2026',
       github: 'https://github.com/AnanyaSoni2004/E_G14_TransactionsFraudDetection',
-      demo: '',
+      demo: 'https://public.tableau.com/app/profile/ranajeet.roy/viz/FraudDetectionAnalysis_17772917071070/FraudDetectionActionableInsights',
       description: 'ML-based credit card fraud detection system achieving 99% precision with adaptive threshold tuning and real-time scoring pipeline.',
       tech: ['Python', 'Scikit-learn', 'XGBoost', 'SHAP', 'FastAPI'],
       highlights: [
