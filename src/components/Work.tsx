@@ -21,9 +21,9 @@ const PhoneTiltExperience = dynamic(() => import('./PhoneTiltExperience'),  { ss
 const fullstackProjects = [
   {
     name: 'upSosh',
-    date: 'Dec 2025',
-    github: '',
-    demo: '',
+    date: 'Dec 2026',
+    github: 'https://github.com/ParrvLuthra22/upSosh',
+    demo: 'https://www.upsosh.app/',
     description: 'Micro-event booking platform with payment integration and real-time dashboards.',
     highlights: [
       'Concurrent booking handling with optimised relational data via Prisma ORM',
@@ -36,8 +36,8 @@ const fullstackProjects = [
   {
     name: 'CreatorLyff',
     date: 'Jan 2026',
-    github: '',
-    demo: '',
+    github: 'https://github.com/ParrvLuthra22/creatormarketplace',
+    demo: 'https://creatormarketplace.vercel.app',
     description: 'Full-stack creator marketplace — brands discover and collaborate with creators.',
     highlights: [
       'Role-based workflows with proposal management and status tracking',
@@ -49,7 +49,7 @@ const fullstackProjects = [
   },
   {
     name: 'TuneMate',
-    date: 'Nov–Dec 2024',
+    date: 'Nov–Dec 2026',
     github: 'https://github.com/ParrvLuthra22/musicMatch',
     demo: 'https://music-match-bay.vercel.app',
     description: 'Music-based dating app that matches users via Spotify habits and suggests concert dates.',
@@ -63,7 +63,7 @@ const fullstackProjects = [
   },
   {
     name: 'FoodKhoj',
-    date: 'Apr 2025',
+    date: 'Apr 2026',
     github: 'https://github.com/ParrvLuthra22/FoodKhoj',
     demo: 'https://food-khoj.vercel.app',
     description: 'Responsive frontend for food delivery and real-time map-based order tracking.',
@@ -82,7 +82,7 @@ const aiProjects = [
     outputIdx: 0,
     name: 'Friday',
     date: 'Jan 2026',
-    github: '',
+    github: 'https://github.com/ParrvLuthra22/aiassistantadvanced',
     demo: '',
     description: 'Modular macOS AI assistant with multi-agent pub/sub architecture and fully offline voice stack.',
     highlights: [
@@ -98,8 +98,8 @@ const aiProjects = [
   {
     outputIdx: 1,
     name: 'MMAS',
-    date: 'Apr 2025',
-    github: '',
+    date: 'Apr 2026',
+    github: 'https://github.com/ParrvLuthra22/MMAS',
     demo: '',
     description: 'Multi-Model Agent System — 4-agent research pipeline completing in under 12s.',
     highlights: [
@@ -114,9 +114,9 @@ const aiProjects = [
   {
     outputIdx: 0,
     name: 'PlayerChurnPrediction',
-    date: '2025',
-    github: '',
-    demo: '',
+    date: '2026',
+    github: 'https://github.com/ParrvLuthra22/playerchurndataPrediction',
+    demo: 'https://playerchurndataprediction-jtwb7gzafrrqvx6bm8g2cv.streamlit.app/',
     description: 'ML model predicting player churn in gaming platforms using behavioral data.',
     highlights: [
       'Feature engineering from player session and engagement logs',
@@ -129,8 +129,8 @@ const aiProjects = [
   {
     outputIdx: 1,
     name: 'AIDelegate',
-    date: '2025',
-    github: '',
+    date: '2026',
+    github: 'https://github.com/ParrvLuthra22/AIDelegate',
     demo: '',
     description: 'Autonomous task delegation system that routes tasks to specialised sub-agents.',
     highlights: [
@@ -144,7 +144,7 @@ const aiProjects = [
   {
     outputIdx: 2,
     name: 'GitHub Reviewer',
-    date: '2025',
+    date: '2026',
     github: '',
     demo: '',
     description: 'AI-powered GitHub PR reviewer that gives inline code critique and suggestions.',
