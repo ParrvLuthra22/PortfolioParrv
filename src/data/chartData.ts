@@ -31,34 +31,34 @@ export interface ProjectSnippet {
 // ─── Datasets ─────────────────────────────────────────────────────────────────
 
 export const CHART_DATASETS: ChartDataset[] = [
-  {
-    type: 'bar',
-    pillLabel: 'Uber Analysis',
-    color: '#FFB800',
-    accentColor: '#FFD060',
-    gradient: ['#1a1200', '#2e1e00'],
-    points: [
-      { label: 'Surge',   value: 88, raw: '2.4× peak'    },
-      { label: 'Wait',    value: 62, raw: '4.2 min avg'  },
-      { label: 'Rating',  value: 94, raw: '4.87 / 5'     },
-      { label: 'Cancel',  value: 28, raw: '12% rate'     },
-      { label: 'Revenue', value: 81, raw: '$2.1M/mo'     },
-      { label: 'Drivers', value: 73, raw: '18k active'   },
-    ],
-    project: {
-      name: 'Uber Data Analysis',
-      date: '2025',
-      github: '',
-      demo: '',
-      description: 'End-to-end exploratory data analysis of Uber ride data — uncovering surge patterns, driver behaviour, and revenue trends across a 6-month dataset.',
-      tech: ['Python', 'Pandas', 'Seaborn', 'Matplotlib', 'Jupyter'],
-      highlights: [
-        'Surge pricing pattern detection across 500k+ trips',
-        'Driver efficiency scoring with heatmap visualisation',
-        'Revenue trend analysis with seasonality decomposition',
-      ],
-    },
-  },
+  // {
+  //   type: 'bar',
+  //   pillLabel: 'Uber Analysis',
+  //   color: '#FFB800',
+  //   accentColor: '#FFD060',
+  //   gradient: ['#1a1200', '#2e1e00'],
+  //   points: [
+  //     { label: 'Surge',   value: 88, raw: '2.4× peak'    },
+  //     { label: 'Wait',    value: 62, raw: '4.2 min avg'  },
+  //     { label: 'Rating',  value: 94, raw: '4.87 / 5'     },
+  //     { label: 'Cancel',  value: 28, raw: '12% rate'     },
+  //     { label: 'Revenue', value: 81, raw: '$2.1M/mo'     },
+  //     { label: 'Drivers', value: 73, raw: '18k active'   },
+  //   ],
+  //   project: {
+  //     name: 'Uber Data Analysis',
+  //     date: '2025',
+  //     github: '',
+  //     demo: '',
+  //     description: 'End-to-end exploratory data analysis of Uber ride data — uncovering surge patterns, driver behaviour, and revenue trends across a 6-month dataset.',
+  //     tech: ['Python', 'Pandas', 'Seaborn', 'Matplotlib', 'Jupyter'],
+  //     highlights: [
+  //       'Surge pricing pattern detection across 500k+ trips',
+  //       'Driver efficiency scoring with heatmap visualisation',
+  //       'Revenue trend analysis with seasonality decomposition',
+  //     ],
+  //   },
+  // },
   {
     type: 'line',
     pillLabel: 'FraudGuard',
